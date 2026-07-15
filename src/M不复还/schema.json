@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "系统": {
+      "type": "object",
+      "properties": {
+        "当前楼层": {
+          "default": "第1层",
+          "type": "string"
+        },
+        "楼层编号": {
+          "default": 1,
+          "type": "number"
+        },
+        "游戏阶段": {
+          "default": "探索",
+          "type": "string"
+        },
+        "难度": {
+          "default": "普通",
+          "type": "string",
+          "enum": [
+            "普通",
+            "困难"
+          ]
+        }
+      }
+    },
+    "玩家": {
+      "type": "object",
+      "properties": {
+        "LV": {
+          "default": 1,
+          "type": "number"
+        },
+        "EXP": {
+          "default": 0,
+          "type": "number"
+        },
+        "HP": {
+          "default": 100,
+          "type": "number"
+        },
+        "MaxHP": {
+          "default": 100,
+          "type": "number"
+        },
+        "MP": {
+          "default": 100,
+          "type": "number"
+        },
+        "MaxMP": {
+          "default": 100,
+          "type": "number"
+        },
+        "WIL": {
+          "default": 100,
+          "type": "number"
+        },
+        "MaxWIL": {
+          "default": 100,
+          "type": "number"
+        },
+        "ATK": {
+          "default": 10,
+          "type": "number"
+        },
+        "ATK公式": {
+          "default": "10",
+          "type": "string"
+        },
+        "DEF": {
+          "default": 10,
+          "type": "number"
+        },
+        "DEF公式": {
+          "default": "10",
+          "type": "string"
+        },
+        "G": {
+          "default": 0,
+          "type": "number"
+        },
+        "SP": {
+          "default": 0,
+          "type": "number"
+        },
+        "天赋": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "职业": {
+          "type": "object",
+          "properties": {
+            "名称": {
+              "default": "",
+              "type": "string"
+            },
+            "阶位": {
+              "default": 1,
+              "type": "number"
+            }
+          }
+        },
+        "主动技能": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              },
+              "效果": {
+                "default": "",
+                "type": "string"
+              },
+              "消耗": {
+                "default": {},
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "被动技能": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "状态效果": {
+          "default": {
+            "增益": {},
+            "减益": {}
+          },
+          "type": "object",
+          "properties": {
+            "增益": {
+              "default": {},
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "剩余回合": {
+                    "default": 1,
+                    "type": "number"
+                  },
+                  "描述": {
+                    "default": "",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "减益": {
+              "default": {},
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "剩余回合": {
+                    "default": 1,
+                    "type": "number"
+                  },
+                  "描述": {
+                    "default": "",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "职业"
+      ]
+    },
+    "装备": {
+      "type": "object",
+      "properties": {
+        "武器": {
+          "default": "暂无",
+          "type": "string"
+        },
+        "防具": {
+          "default": "暂无",
+          "type": "string"
+        },
+        "饰品": {
+          "default": "暂无",
+          "type": "string"
+        }
+      }
+    },
+    "背包": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "数量": {
+            "default": 1,
+            "type": "number"
+          },
+          "描述": {
+            "default": "",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "战斗": {
+      "type": "object",
+      "properties": {
+        "战斗中": {
+          "default": false,
+          "type": "boolean"
+        },
+        "回合数": {
+          "default": 0,
+          "type": "number"
+        },
+        "敌人": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "LV": {
+                "default": 0,
+                "type": "number"
+              },
+              "HP": {
+                "default": 0,
+                "type": "number"
+              },
+              "MaxHP": {
+                "default": 0,
+                "type": "number"
+              },
+              "ATK": {
+                "default": 0,
+                "type": "number"
+              },
+              "DEF": {
+                "default": 0,
+                "type": "number"
+              },
+              "状态效果": {
+                "default": {
+                  "增益": {},
+                  "减益": {}
+                },
+                "type": "object",
+                "properties": {
+                  "增益": {
+                    "default": {},
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "剩余回合": {
+                          "default": 1,
+                          "type": "number"
+                        },
+                        "描述": {
+                          "default": "",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "减益": {
+                    "default": {},
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "剩余回合": {
+                          "default": 1,
+                          "type": "number"
+                        },
+                        "描述": {
+                          "default": "",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "系统",
+    "玩家",
+    "装备",
+    "战斗"
+  ]
+}
