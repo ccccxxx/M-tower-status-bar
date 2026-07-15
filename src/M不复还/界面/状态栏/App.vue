@@ -38,9 +38,9 @@
               <div class="职业行">{{ d.玩家?.职业?.名称||'无' }}<template v-if="d.玩家?.职业?.名称"> ·{{ d.玩家?.职业?.阶位 }}阶</template></div>
 
               <div class="res-area">
-                <div class="bar-row"><span class="bar-label" style="color:#e94560">HP</span><div class="bar-track"><div class="bar-fill hp" :style="{width:hpPct+'%'}"></div></div><span class="bar-text">{{ d.玩家?.HP }}/{{ d.玩家?.MaxHP }}</span></div>
-                <div class="bar-row"><span class="bar-label" style="color:#4a9eff">MP</span><div class="bar-track"><div class="bar-fill mp" :style="{width:mpPct+'%'}"></div></div><span class="bar-text">{{ d.玩家?.MP }}/{{ d.玩家?.MaxMP }}</span></div>
-                <div class="bar-row"><span class="bar-label" style="color:#ffd93d">WIL</span><div class="bar-track"><div class="bar-fill wil" :style="{width:wilPct+'%'}"></div></div><span class="bar-text">{{ d.玩家?.WIL }}/{{ d.玩家?.MaxWIL }}</span></div>
+                <div class="bar-row"><span class="bar-label" style="color:#e94560">HP</span><div class="bar-track"><div class="bar-fill hp" :style="{width:hpPct+'%', background:hpColor}"></div></div><span class="bar-text">{{ d.玩家?.HP }}/{{ d.玩家?.MaxHP }}</span></div>
+                <div class="bar-row"><span class="bar-label" style="color:#4a9eff">MP</span><div class="bar-track"><div class="bar-fill mp" :style="{width:mpPct+'%', background:mpColor}"></div></div><span class="bar-text">{{ d.玩家?.MP }}/{{ d.玩家?.MaxMP }}</span></div>
+                <div class="bar-row"><span class="bar-label" style="color:#ffd93d">WIL</span><div class="bar-track"><div class="bar-fill wil" :style="{width:wilPct+'%', background:wilColor}"></div></div><span class="bar-text">{{ d.玩家?.WIL }}/{{ d.玩家?.MaxWIL }}</span></div>
               </div>
 
               <div class="atkdef-area">
@@ -249,6 +249,17 @@ const enemyHpPct = computed(() => {
   return e.MaxHP ? Math.min(100, Math.round(e.HP / e.MaxHP * 100)) : 0;
 });
 
+const barColor = (cur: number, max: number, hi: string, mid: string) => {
+  if (!max) return hi;
+  const pct = (cur / max) * 100;
+  if (pct >= 50) return hi;
+  if (pct >= 30) return mid;
+  return '#e94560';
+};
+const hpColor = computed(() => barColor(d.value.玩家?.HP || 0, d.value.玩家?.MaxHP || 1, '#52b788', '#ffd60a'));
+const mpColor = computed(() => barColor(d.value.玩家?.MP || 0, d.value.玩家?.MaxMP || 1, '#4a9eff', '#ffd60a'));
+const wilColor = computed(() => barColor(d.value.玩家?.WIL || 0, d.value.玩家?.MaxWIL || 1, '#ffd93d', '#ff8500'));
+
 const atkClass = computed(() => {
   const f = d.value.玩家?.ATK公式 || '';
   return (f.includes('-') && !f.includes('1-')) || (f.match(/-\d+%/) && !f.includes('1-')) ? 'atk-down' : 'atk-up';
@@ -263,17 +274,35 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
 </script>
 
 <style>
+:root {
+  --crt-bg1: rgba(12,12,12,0.88);
+  --crt-bg2: rgba(8,16,8,0.95);
+  --crt-green: #64FF64;
+  --crt-green-dim: #3a6a3a;
+  --crt-text: #d0ffd0;
+  --crt-dim: #8ab88a;
+  --crt-dim2: #a0d0a0;
+  --crt-hp: #e94560;
+  --crt-mp: #4a9eff;
+  --crt-wil: #ffd93d;
+  --crt-exp: #6c5ce7;
+}
+
 * { margin:0; padding:0; box-sizing:border-box; }
 
 .crt {
   font-family:'Courier New',Courier,monospace;
-  background:#0c0c0c; color:#d0ffd0;
-  border:2px solid #3a3a3a; border-radius:6px;
-  padding:10px 12px;
-  width:100%; height:500px; max-height:500px;
-  display:flex; flex-direction:column;
-  position:relative; overflow:hidden;
-  box-shadow:inset 0 0 0 1px #000,0 12px 24px rgba(0,0,0,.40);
+  background: linear-gradient(180deg, var(--crt-bg1), var(--crt-bg2));
+  backdrop-filter: blur(8px);
+  color: var(--crt-text);
+  border: 1px solid rgba(100,255,100,0.15);
+  border-top: 1px solid rgba(100,255,100,0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 100%; height: 500px; max-height: 500px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.6), inset 0 0 20px rgba(100,255,100,.06);
 }
 .crt::after {
   content:''; position:absolute; inset:0;
@@ -297,7 +326,7 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
 .tab-bar > button { flex:1; text-align:center; }
 .tab-btn {
   background:transparent; border:1px solid transparent;
-  color:#5a8a5a; padding:3px 14px; cursor:pointer;
+  color:var(--crt-dim); padding:3px 14px; cursor:pointer;
   font-family:inherit; font-size:14px;
   border-radius:4px 4px 0 0; transition:all .2s;
 }
@@ -341,17 +370,17 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
 .user-gold { color:#ffd93d; font-size:18px; text-shadow:0 0 8px rgba(255,217,61,.3); }
 
 .exp-area { margin-bottom:4px; }
-.exp-hd { display:flex; justify-content:space-between; font-size:11px; color:#7aaa7a; padding:0 4px; }
+.exp-hd { display:flex; justify-content:space-between; font-size:12px; color:var(--crt-dim2); padding:0 4px; }
 .bar-track { height:10px; width:100%; background:rgba(0,0,0,.6); border:1px solid #3a3a3a; overflow:hidden; }
 .bar-track.thin { height:5px; }
 .bar-fill { height:100%; transition:width .3s; }
 .bar-fill.exp   { background:repeating-linear-gradient(90deg,#6c5ce7 0 5px,#a29bfe 5px 10px); }
-.bar-fill.hp    { background:repeating-linear-gradient(90deg,#e94560 0 5px,#c0392b 5px 10px); }
-.bar-fill.mp    { background:repeating-linear-gradient(90deg,#4a9eff 0 5px,#2980b9 5px 10px); }
-.bar-fill.wil   { background:repeating-linear-gradient(90deg,#ffd93d 0 5px,#f39c12 5px 10px); }
+.bar-fill.hp    { background: #e94560; }
+.bar-fill.mp    { background: #4a9eff; }
+.bar-fill.wil   { background: #ffd93d; }
 
 .职业行 {
-  font-size:12px; color:#7aaa7a; padding:2px 4px 4px; border-bottom:1px solid #1a1a1a; margin-bottom:4px;
+  font-size:12px; color:var(--crt-dim2); padding:2px 4px 4px; border-bottom:1px solid #1a1a1a; margin-bottom:4px;
 }
 
 .res-area { margin-bottom:4px; }
@@ -360,15 +389,15 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
 }
 .bar-row .bar-label { font-size:12px; font-weight:700; min-width:28px; }
 .bar-row .bar-track { flex:1; min-width:0; height:10px; }
-.bar-row .bar-text  { font-size:11px; color:#7aaa7a; min-width:48px; text-align:right; }
+.bar-row .bar-text  { font-size:12px; color:var(--crt-dim2); min-width:48px; text-align:right; }
 
 .atkdef-area { padding:3px 4px; border-top:1px solid #1a1a1a; margin-bottom:4px; }
 .atkdef-row { display:flex; align-items:baseline; gap:4px; padding:1px 0; font-size:13px; }
-.atkdef-row .label { color:#7aaa7a; min-width:32px; }
+.atkdef-row .label { color:var(--crt-dim2); min-width:32px; }
 .atkdef-row .val   { font-weight:700; letter-spacing:.02em; }
 .atkdef-row .val.atk-up   { color:#6bc5ff; }
 .atkdef-row .val.atk-down { color:#e94560; }
-.atkdef-row .formula  { color:#5a6a5a; font-size:12px; }
+.atkdef-row .formula  { color:#80a080; font-size:12px; }
 
 .sp-area {
   text-align:center; font-size:14px; font-weight:700; padding:3px 4px;
@@ -382,19 +411,21 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
   0%,100%{ opacity:1; transform:scale(1); }
   50%{ opacity:.7; transform:scale(1.03); }
 }
-.sp-area.normal { color:#7aaa7a; }
+.sp-area.normal { color:var(--crt-dim2); }
 
 .attr-item { padding:2px 4px 2px 14px; font-size:12px; }
+.attr-item:nth-child(odd) { background:rgba(100,255,100,0.03); }
 .attr-name { color:#eaffea; font-weight:600; }
-.attr-desc { color:#7aaa7a; font-size:11px; padding-left:8px; line-height:1.4; }
-.attr-name .回合 { color:#5a6a5a; font-weight:400; font-size:11px; }
+.attr-desc { color:var(--crt-dim2); font-size:12px; padding-left:8px; line-height:1.4; }
+.attr-name .回合 { color:#80a080; font-weight:400; font-size:12px; }
 .sub-title {
   text-align:center; font-size:11px; color:#5a6a5a;
   padding:2px 0; letter-spacing:.1em;
 }
 
 .equip-grid {
-  display:flex; gap:6px; padding:4px 0;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
+  gap:6px; padding:4px 0;
 }
 .equip-slot {
   flex:1; text-align:center; padding:6px 4px;
@@ -419,7 +450,7 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
   margin:4px 0;
 }
 
-.empty-row { color:#5a6a5a; font-style:italic; font-size:12px; padding:4px 8px; }
+.empty-row { color:#80a080; font-style:italic; font-size:12px; padding:4px 8px; }
 
 /* ── 战斗栏 ── */
 .battle-hd {
@@ -457,4 +488,12 @@ function nextEnemy() { if (enemyIdx.value < enemyKeys.value.length - 1) enemyIdx
 .enemy-card .fold-hd { font-size:14px; }
 
 .battle-foot { text-align:center; font-size:14px; color:#5a6a5a; padding:6px; }
+
+.isekai-fade-in {
+  animation:isekai-fade-in .3s ease-out both;
+}
+@keyframes isekai-fade-in {
+  from{ opacity:0; transform:scale(.95) translateY(4px); }
+  to  { opacity:1; transform:scale(1) translateY(0); }
+}
 </style>
