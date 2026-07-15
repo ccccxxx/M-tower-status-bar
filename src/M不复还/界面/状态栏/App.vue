@@ -19,7 +19,7 @@
         <div class="status-split">
           <div class="left-col">
             <div class="user-row">
-              <span class="user-name">&lt;user&gt;</span>
+              <span class="user-name">{{ userName }}</span>
               <span class="user-lv">Lv{{ d.玩家?.LV }}</span>
               <span class="user-gold">{{ d.玩家?.G }}G</span>
             </div>
@@ -201,7 +201,8 @@ import { computed, reactive, ref } from 'vue';
 import { useDataStore } from './store';
 
 const store = useDataStore();
-const d = computed(() => store.stat_data || {});
+const d = computed(() => store.data || {});
+const userName = SillyTavern.name1 || getCurrentPersonaName() || '&lt;user&gt;';
 
 const tab = ref('status');
 const enemyIdx = ref(0);
