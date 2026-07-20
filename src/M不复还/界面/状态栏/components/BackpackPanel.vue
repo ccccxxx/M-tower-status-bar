@@ -6,11 +6,13 @@
         <div v-for="slot in equipSlots" :key="slot.key" class="equip-slot">
           <div class="icon">{{ slot.icon }}</div>
           <template v-if="slot.equip">
-            <div class="name" :class="slot.nameClass">{{ slot.equip.名称 }}</div>
+            <div class="equip-hd">
+              <div class="name" :class="slot.nameClass">{{ slot.equip.名称 }}</div>
+              <button class="act-btn" @click="unequipItem(slot.key)">卸下</button>
+            </div>
             <div class="equip-bonus" v-if="Object.keys(slot.equip.属性||{}).length">
               <span v-for="(v,k) in slot.equip.属性" :key="k" class="bonus-tag">{{ k }}+{{ v }}</span>
             </div>
-            <button class="act-btn" @click="unequipItem(slot.key)">卸下</button>
           </template>
           <template v-else>
             <div class="name empty">无</div>
@@ -94,6 +96,7 @@ function typeClass(type: string): string {
 .equip-slot .name.armor  { color:#6bc5ff; }
 .equip-slot .name.acce   { color:#c084fc; }
 .equip-slot .name.empty  { color:#5a6a5a; font-style:italic; font-weight:400; }
+.equip-hd { display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center; }
 .equip-bonus { display:flex; gap:2px; flex-wrap:wrap; justify-content:center; margin-bottom:2px; }
 .bonus-tag { font-size:10px; color:#80a080; background:rgba(100,255,100,.08); padding:0 3px; border-radius:2px; }
 

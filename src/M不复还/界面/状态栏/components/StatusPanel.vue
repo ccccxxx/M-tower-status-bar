@@ -20,16 +20,10 @@
 
         <div class="职业行">{{ store.data.玩家?.职业?.名称||'无' }}<template v-if="store.data.玩家?.职业?.名称"> ·{{ store.data.玩家?.职业?.阶位 }}阶</template></div>
 
-        <div class="sp-area" :class="(store.data.玩家?.SP||0)>0?'pulse':'normal'">
-          <template v-if="(store.data.玩家?.SP||0)>0">⭐⭐⭐</template>
-          可用属性点:{{ store.data.玩家?.SP }}
-          <template v-if="(store.data.玩家?.SP||0)>0">⭐⭐⭐</template>
-        </div>
-
         <div class="res-area">
-          <div class="bar-row"><span class="bar-label" style="color:var(--crt-hp)">HP</span><div class="bar-track"><div class="bar-fill hp" :style="{width:hpPct+'%', background:hpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.HP }}/{{ store.data.玩家?.MaxHP }}</span></div>
-          <div class="bar-row"><span class="bar-label" style="color:var(--crt-mp)">MP</span><div class="bar-track"><div class="bar-fill mp" :style="{width:mpPct+'%', background:mpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.MP }}/{{ store.data.玩家?.MaxMP }}</span></div>
-          <div class="bar-row"><span class="bar-label" style="color:var(--crt-wil)">WIL</span><div class="bar-track"><div class="bar-fill wil" :style="{width:wilPct+'%', background:wilColor}"></div></div><span class="bar-text">{{ store.data.玩家?.WIL }}/{{ store.data.玩家?.MaxWIL }}</span></div>
+          <div class="bar-row"><span class="bar-label" style="color:var(--crt-hp)">HP</span><div class="bar-track"><div class="bar-fill hp" :style="{width:hpPct+'%', background:hpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.HP }}/{{ store.data.玩家?.MaxHP }}</span><button class="act-btn mini" @click="assignSP('MaxHP')" :disabled="(store.data.玩家?.SP||0)<=0">+</button><button class="act-btn mini" @click="reverseSP('MaxHP')" :disabled="!hasPending('MaxHP')">-</button></div>
+          <div class="bar-row"><span class="bar-label" style="color:var(--crt-mp)">MP</span><div class="bar-track"><div class="bar-fill mp" :style="{width:mpPct+'%', background:mpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.MP }}/{{ store.data.玩家?.MaxMP }}</span><button class="act-btn mini" @click="assignSP('MaxMP')" :disabled="(store.data.玩家?.SP||0)<=0">+</button><button class="act-btn mini" @click="reverseSP('MaxMP')" :disabled="!hasPending('MaxMP')">-</button></div>
+          <div class="bar-row"><span class="bar-label" style="color:var(--crt-wil)">WIL</span><div class="bar-track"><div class="bar-fill wil" :style="{width:wilPct+'%', background:wilColor}"></div></div><span class="bar-text">{{ store.data.玩家?.WIL }}/{{ store.data.玩家?.MaxWIL }}</span><button class="act-btn mini" @click="assignSP('MaxWIL')" :disabled="(store.data.玩家?.SP||0)<=0">+</button><button class="act-btn mini" @click="reverseSP('MaxWIL')" :disabled="!hasPending('MaxWIL')">-</button></div>
         </div>
 
         <div class="atkdef-area">
@@ -37,8 +31,14 @@
             <span class="label" :style="stat.labelStyle">{{ stat.label }}</span>
             <span class="val" :class="stat.class">{{ stat.val }}<template v-if="stat.up"> ▲</template><template v-else-if="stat.down"> ▼</template></span>
             <span class="formula">({{ stat.base }})</span>
-            <button v-if="(store.data.玩家?.SP||0)>0" class="act-btn mini" @click="assignSP(stat.key)">+</button>
+            <button class="act-btn mini" @click="assignSP(stat.key)" :disabled="(store.data.玩家?.SP||0)<=0">+</button>
+            <button class="act-btn mini" @click="reverseSP(stat.key)" :disabled="!hasPending(stat.key)">-</button>
           </div>
+        </div>
+
+        <div class="sp-area" :class="(store.data.玩家?.SP||0)>0?'pulse':'normal'">
+          可用属性点:{{ store.data.玩家?.SP }}
+          <button class="act-btn" :disabled="!pendingCount" @click="confirmSP">确认加点</button>
         </div>
       </template>
     </div>
@@ -96,7 +96,7 @@ import { useDataStore } from '../store';
 import { useGameActions } from '../game-actions';
 
 const store = useDataStore();
-const { assignStatPoint } = useGameActions();
+const { assignStatPoint, reverseStatPoint, confirmAssign, pendingChanges } = useGameActions();
 const userName = SillyTavern.name1 || getCurrentPersonaName() || '<user>';
 
 const fold = reactive({
@@ -143,6 +143,10 @@ const defUp = computed(() => (store.data.玩家?.curDEF||0) > (store.data.玩家
 const defDown = computed(() => (store.data.玩家?.curDEF||0) < (store.data.玩家?.DEF||0));
 
 function assignSP(stat: string) { assignStatPoint(stat); }
+function reverseSP(stat: string) { reverseStatPoint(stat); }
+function confirmSP() { confirmAssign(); }
+function hasPending(stat: string) { return pendingChanges.value.includes(stat); }
+const pendingCount = computed(() => pendingChanges.value.length);
 
 const statList = computed(() => [
   {
@@ -160,24 +164,6 @@ const statList = computed(() => [
     up: defUp.value, down: defDown.value,
     class: defUp.value ? 'atk-up' : defDown.value ? 'atk-down' : '',
     labelStyle: '',
-  },
-  {
-    key: 'MaxHP', label: 'MaxHP',
-    val: store.data.玩家?.MaxHP, base: '',
-    up: false, down: false, class: '',
-    labelStyle: 'color:var(--crt-hp)',
-  },
-  {
-    key: 'MaxMP', label: 'MaxMP',
-    val: store.data.玩家?.MaxMP, base: '',
-    up: false, down: false, class: '',
-    labelStyle: 'color:var(--crt-mp)',
-  },
-  {
-    key: 'MaxWIL', label: 'MaxWIL',
-    val: store.data.玩家?.MaxWIL, base: '',
-    up: false, down: false, class: '',
-    labelStyle: 'color:var(--crt-wil)',
   },
 ]);
 </script>

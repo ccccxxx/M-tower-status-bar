@@ -1,7 +1,9 @@
+import { ref } from 'vue';
 import { useDataStore } from './store';
 
 export function useGameActions() {
   const store = useDataStore();
+  const pendingChanges = ref<string[]>([]);
 
   function extractName(key: string): string {
     return key.replace(/^item_\d+_/, '');
@@ -29,7 +31,6 @@ export function useGameActions() {
 
     store.data.装备[slot] = { 名称: itemName, 属性: 属性, 效果: item.效果 || '' };
     delete store.data.背包[itemKey];
-    sendSystemMessage(`你装备了 ${itemName}。`);
   }
 
   function unequipItem(slot: '武器' | '防具' | '饰品'): void {
@@ -55,7 +56,6 @@ export function useGameActions() {
       投掷效果: '', 使用次数: 0, 持续回合: 0,
     };
     store.data.装备[slot] = null;
-    sendSystemMessage(`你卸下了 ${itemName}。`);
   }
 
   function useConsumable(itemKey: string): void {
@@ -65,7 +65,6 @@ export function useGameActions() {
     applyEffect(item.效果);
     store.data.背包[itemKey].数量 -= 1;
     if (store.data.背包[itemKey].数量 <= 0) delete store.data.背包[itemKey];
-    sendSystemMessage(`你使用了 ${itemName}。`);
   }
 
   function throwItem(itemKey: string): void {
@@ -74,7 +73,6 @@ export function useGameActions() {
 
     const enemyKeys = Object.keys(store.data.战斗?.敌人 || {});
     if (!enemyKeys.length) {
-      sendSystemMessage('没有可投掷的目标。');
       return;
     }
     const enemyKey = enemyKeys[0];
@@ -108,7 +106,6 @@ export function useGameActions() {
 
     store.data.背包[itemKey].数量 -= 1;
     if (store.data.背包[itemKey].数量 <= 0) delete store.data.背包[itemKey];
-    sendSystemMessage(`你对 ${enemyKey} 投掷了 ${itemName}。`);
   }
 
   function useSpecialItem(itemKey: string): void {
@@ -116,7 +113,6 @@ export function useGameActions() {
     if (!item) return;
     const itemName = extractName(itemKey);
     item.使用次数 = (item.使用次数 || 0) + 1;
-    sendSystemMessage(`你使用了 ${itemName}。（已使用${item.使用次数}次）`);
     try {
       SillyTavern.generateQuietPrompt()('', false, false);
     } catch (e) {
@@ -134,7 +130,29 @@ export function useGameActions() {
       case 'MaxMP': store.data.玩家.MaxMP += 10; store.data.玩家.MP += 10; break;
       case 'MaxWIL': store.data.玩家.MaxWIL += 10; store.data.玩家.WIL += 10; break;
     }
-    sendSystemMessage(`你消耗了1点属性点，${stat}提升了。`);
+    pendingChanges.value.push(stat);
+  }
+
+  function reverseStatPoint(stat: string): void {
+    const idx = pendingChanges.value.lastIndexOf(stat);
+    if (idx === -1) return;
+    pendingChanges.value.splice(idx, 1);
+    store.data.玩家.SP += 1;
+    switch (stat) {
+      case 'ATK': store.data.玩家.ATK -= 1; store.data.玩家.curATK -= 1; break;
+      case 'DEF': store.data.玩家.DEF -= 2; store.data.玩家.curDEF -= 2; break;
+      case 'MaxHP': store.data.玩家.MaxHP -= 10; store.data.玩家.HP = Math.min(store.data.玩家.HP || 0, store.data.玩家.MaxHP); break;
+      case 'MaxMP': store.data.玩家.MaxMP -= 10; store.data.玩家.MP = Math.min(store.data.玩家.MP || 0, store.data.玩家.MaxMP); break;
+      case 'MaxWIL': store.data.玩家.MaxWIL -= 10; store.data.玩家.WIL = Math.min(store.data.玩家.WIL || 0, store.data.玩家.MaxWIL); break;
+    }
+  }
+
+  function confirmAssign(): void {
+    if (!pendingChanges.value.length) return;
+    const total = pendingChanges.value.length;
+    const stats = pendingChanges.value.join('、');
+    sendSystemMessage(`你消耗了${total}点属性点，提升了${stats}。`);
+    pendingChanges.value = [];
   }
 
   function typeToSlot(type: string): '武器' | '防具' | '饰品' | null {
@@ -240,5 +258,5 @@ export function useGameActions() {
     }
   }
 
-  return { equipItem, unequipItem, useConsumable, throwItem, useSpecialItem, assignStatPoint, extractName, store };
+  return { equipItem, unequipItem, useConsumable, throwItem, useSpecialItem, assignStatPoint, reverseStatPoint, confirmAssign, extractName, pendingChanges, store };
 }
