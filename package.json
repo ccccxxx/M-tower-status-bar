@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "build:dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch --progress",
+    "build:dev": "tsx node_modules/webpack-cli/bin/cli.js --mode development",
+    "build": "tsx node_modules/webpack-cli/bin/cli.js --mode production",
+    "watch": "tsx node_modules/webpack-cli/bin/cli.js --mode development --watch --progress",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss,html,vue}\" --no-error-on-unmatched-pattern",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "dump": "node dump_schema.ts",
+    "dump": "node dump_schema.mjs",
     "sync": "node tavern_sync.mjs"
   },
   "browserslist": [
@@ -63,6 +63,7 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+    "tsx": "^4.23.1",
     "type-fest": "^5.8.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.64.0",
@@ -106,15 +107,5 @@
     "yaml": "^2.9.0",
     "zod": "^4.4.3"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "@tailwindcss/oxide",
-      "electron",
-      "esbuild",
-      "javascript-obfuscator",
-      "unrs-resolver",
-      "vue-demi"
-    ]
-  }
+  "pnpm": {}
 }

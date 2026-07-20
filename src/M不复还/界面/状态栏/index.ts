@@ -4,9 +4,6 @@ import './global.css';
 
 $(async () => {
   await waitGlobalInitialized('Mvu');
-  await Promise.race([
-    waitUntil(() => _.has(getVariables({ type: 'message' }), 'stat_data')),
-    new Promise(r => setTimeout(r, 5000)),
-  ]);
+  await waitUntil(() => _.has(getVariables({ type: 'message' }), 'stat_data'));
   createApp(App).use(createPinia()).mount('#app');
 });

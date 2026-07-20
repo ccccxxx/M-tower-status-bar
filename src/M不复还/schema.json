@@ -24,6 +24,10 @@
             "普通",
             "困难"
           ]
+        },
+        "楼层已交互": {
+          "default": false,
+          "type": "boolean"
         }
       }
     },
@@ -66,17 +70,17 @@
           "default": 10,
           "type": "number"
         },
-        "ATK公式": {
-          "default": "10",
-          "type": "string"
+        "curATK": {
+          "default": 10,
+          "type": "number"
         },
         "DEF": {
           "default": 10,
           "type": "number"
         },
-        "DEF公式": {
-          "default": "10",
-          "type": "string"
+        "curDEF": {
+          "default": 10,
+          "type": "number"
         },
         "G": {
           "default": 0,
@@ -219,16 +223,100 @@
       "type": "object",
       "properties": {
         "武器": {
-          "default": "暂无",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "名称": {
+                  "type": "string"
+                },
+                "属性": {
+                  "default": {},
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "number"
+                  }
+                },
+                "效果": {
+                  "default": "",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "名称"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "防具": {
-          "default": "暂无",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "名称": {
+                  "type": "string"
+                },
+                "属性": {
+                  "default": {},
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "number"
+                  }
+                },
+                "效果": {
+                  "default": "",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "名称"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "饰品": {
-          "default": "暂无",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "名称": {
+                  "type": "string"
+                },
+                "属性": {
+                  "default": {},
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "number"
+                  }
+                },
+                "效果": {
+                  "default": "",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "名称"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       }
     },
@@ -248,6 +336,37 @@
           "描述": {
             "default": "",
             "type": "string"
+          },
+          "类型": {
+            "default": "道具",
+            "type": "string",
+            "enum": [
+              "武器",
+              "防具",
+              "饰品",
+              "消耗品",
+              "材料",
+              "道具",
+              "特殊道具"
+            ]
+          },
+          "属性": {
+            "default": {},
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "number"
+            }
+          },
+          "效果": {
+            "default": "",
+            "type": "string"
+          },
+          "持续回合": {
+            "default": 0,
+            "type": "number"
           }
         }
       }

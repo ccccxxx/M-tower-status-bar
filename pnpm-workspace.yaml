@@ -1,4 +1,7 @@
 allowBuilds:
   '@parcel/watcher': true
+  esbuild: false
   unrs-resolver: true
   vue-demi: true
+approvedBuilds: '[esbuild]'
+onlyBuiltDependencies: '[esbuild]'
