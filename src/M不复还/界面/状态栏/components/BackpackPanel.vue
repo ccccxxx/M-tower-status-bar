@@ -27,18 +27,16 @@
     <template v-if="!fold.物品">
       <div v-for="(v,k) in store.data.背包||{}" :key="k" class="item-row">
         <div class="item-hd">
-          {{ extractName(k) }}
-          <span class="count"> ×{{ v.数量 }}</span>
-          <span class="item-type-tag" :class="typeClass(v.类型)">{{ v.类型 }}</span>
+          <span class="item-hd-left">{{ extractName(k) }}<span class="count"> ×{{ v.数量 }}</span><span class="item-type-tag" :class="typeClass(v.类型)">{{ v.类型 }}</span></span>
+          <span class="item-actions">
+            <button v-if="canEquip(v.类型)" class="act-btn" @click="equipItem(k)">装备</button>
+            <button v-if="v.类型==='消耗品' && v.效果" class="act-btn" @click="useConsumable(k)">使用</button>
+            <button v-if="v.投掷效果 && store.data.战斗?.战斗中" class="act-btn" @click="throwItem(k)">投掷</button>
+            <button v-if="v.类型==='特殊道具'" class="act-btn special" @click="useSpecial(k)">使用</button>
+          </span>
         </div>
         <div class="item-desc">{{ v.描述||'无描述' }}</div>
         <div class="item-extra" v-if="v.使用次数">已使用{{ v.使用次数 }}次</div>
-        <div class="item-actions">
-          <button v-if="canEquip(v.类型)" class="act-btn" @click="equipItem(k)">装备</button>
-          <button v-if="v.类型==='消耗品' && v.效果" class="act-btn" @click="useConsumable(k)">使用</button>
-          <button v-if="v.投掷效果 && store.data.战斗?.战斗中" class="act-btn" @click="throwItem(k)">投掷</button>
-          <button v-if="v.类型==='特殊道具'" class="act-btn special" @click="useSpecial(k)">使用</button>
-        </div>
       </div>
       <div v-if="!itemKeys.length" class="empty-row">背包空荡荡的...</div>
     </template>
@@ -101,7 +99,8 @@ function typeClass(type: string): string {
 .bonus-tag { font-size:10px; color:#80a080; background:rgba(100,255,100,.08); padding:0 3px; border-radius:2px; }
 
 .item-row { padding:3px 4px; border-bottom:1px solid #1a1a1a; }
-.item-hd { display:flex; align-items:center; gap:6px; font-size:13px; color:#eaffea; }
+.item-hd { display:flex; align-items:center; gap:6px; font-size:13px; color:#eaffea; justify-content:space-between; }
+.item-hd-left { display:flex; align-items:center; gap:6px; }
 .item-hd .count { color:#7aaa7a; }
 .item-type-tag { font-size:10px; padding:0 4px; border-radius:2px; color:#1a1a1a; font-weight:600; }
 .tc-weapon { background:#ffd93d; }
@@ -113,6 +112,6 @@ function typeClass(type: string): string {
 .tc-item { background:#5a6a5a; color:#d0d0d0; }
 .item-desc { font-size:11px; color:#5a6a5a; padding-left:12px; line-height:1.3; }
 .item-extra { font-size:10px; color:#7aaa7a; padding-left:12px; }
-.item-actions { display:flex; gap:4px; padding:2px 0 2px 12px; }
+.item-actions { display:flex; gap:4px; }
 .item-actions .act-btn:disabled { opacity:.35; cursor:not-allowed; }
 </style>

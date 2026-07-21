@@ -21,9 +21,9 @@
         <div class="职业行">{{ store.data.玩家?.职业?.名称||'无' }}<template v-if="store.data.玩家?.职业?.名称"> ·{{ store.data.玩家?.职业?.阶位 }}阶</template></div>
 
         <div class="res-area">
-          <div class="bar-row"><span class="bar-label" style="color:var(--crt-hp)">HP</span><div class="bar-track"><div class="bar-fill hp" :style="{width:hpPct+'%', background:hpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.HP }}/{{ store.data.玩家?.MaxHP }}</span><button class="act-btn mini" @click="assignSP('MaxHP')" :disabled="(store.data.玩家?.SP||0)<=0">+</button><button class="act-btn mini" @click="reverseSP('MaxHP')" :disabled="!hasPending('MaxHP')">-</button></div>
-          <div class="bar-row"><span class="bar-label" style="color:var(--crt-mp)">MP</span><div class="bar-track"><div class="bar-fill mp" :style="{width:mpPct+'%', background:mpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.MP }}/{{ store.data.玩家?.MaxMP }}</span><button class="act-btn mini" @click="assignSP('MaxMP')" :disabled="(store.data.玩家?.SP||0)<=0">+</button><button class="act-btn mini" @click="reverseSP('MaxMP')" :disabled="!hasPending('MaxMP')">-</button></div>
-          <div class="bar-row"><span class="bar-label" style="color:var(--crt-wil)">WIL</span><div class="bar-track"><div class="bar-fill wil" :style="{width:wilPct+'%', background:wilColor}"></div></div><span class="bar-text">{{ store.data.玩家?.WIL }}/{{ store.data.玩家?.MaxWIL }}</span><button class="act-btn mini" @click="assignSP('MaxWIL')" :disabled="(store.data.玩家?.SP||0)<=0">+</button><button class="act-btn mini" @click="reverseSP('MaxWIL')" :disabled="!hasPending('MaxWIL')">-</button></div>
+          <div class="bar-row"><span class="bar-label" style="color:var(--crt-hp)">HP</span><div class="bar-track"><div class="bar-fill hp" :style="{width:hpPct+'%', background:hpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.HP }}/{{ store.data.玩家?.MaxHP }}</span><button v-if="(store.data.玩家?.SP||0)>0 || hasPending('MaxHP')" class="act-btn mini" @click="assignSP('MaxHP')">+</button><button v-if="hasPending('MaxHP')" class="act-btn mini" @click="reverseSP('MaxHP')">-</button></div>
+          <div class="bar-row"><span class="bar-label" style="color:var(--crt-mp)">MP</span><div class="bar-track"><div class="bar-fill mp" :style="{width:mpPct+'%', background:mpColor}"></div></div><span class="bar-text">{{ store.data.玩家?.MP }}/{{ store.data.玩家?.MaxMP }}</span><button v-if="(store.data.玩家?.SP||0)>0 || hasPending('MaxMP')" class="act-btn mini" @click="assignSP('MaxMP')">+</button><button v-if="hasPending('MaxMP')" class="act-btn mini" @click="reverseSP('MaxMP')">-</button></div>
+          <div class="bar-row"><span class="bar-label" style="color:var(--crt-wil)">WIL</span><div class="bar-track"><div class="bar-fill wil" :style="{width:wilPct+'%', background:wilColor}"></div></div><span class="bar-text">{{ store.data.玩家?.WIL }}/{{ store.data.玩家?.MaxWIL }}</span><button v-if="(store.data.玩家?.SP||0)>0 || hasPending('MaxWIL')" class="act-btn mini" @click="assignSP('MaxWIL')">+</button><button v-if="hasPending('MaxWIL')" class="act-btn mini" @click="reverseSP('MaxWIL')">-</button></div>
         </div>
 
         <div class="atkdef-area">
@@ -31,8 +31,10 @@
             <span class="label" :style="stat.labelStyle">{{ stat.label }}</span>
             <span class="val" :class="stat.class">{{ stat.val }}<template v-if="stat.up"> ▲</template><template v-else-if="stat.down"> ▼</template></span>
             <span class="formula">({{ stat.base }})</span>
-            <button class="act-btn mini" @click="assignSP(stat.key)" :disabled="(store.data.玩家?.SP||0)<=0">+</button>
-            <button class="act-btn mini" @click="reverseSP(stat.key)" :disabled="!hasPending(stat.key)">-</button>
+            <span class="atkdef-actions">
+              <button v-if="(store.data.玩家?.SP||0)>0 || hasPending(stat.key)" class="act-btn mini" @click="assignSP(stat.key)">+</button>
+              <button v-if="hasPending(stat.key)" class="act-btn mini" @click="reverseSP(stat.key)">-</button>
+            </span>
           </div>
         </div>
 
@@ -202,4 +204,5 @@ const statList = computed(() => [
 .atkdef-row .val.atk-up   { color:#6bc5ff; }
 .atkdef-row .val.atk-down { color:var(--crt-hp); }
 .atkdef-row .formula  { color:#80a080; font-size:12px; }
+.atkdef-actions { margin-left:auto; display:flex; gap:2px; }
 </style>
