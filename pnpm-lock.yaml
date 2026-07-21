@@ -79,7 +79,11 @@ importers:
         version: 4.5.5(@vueuse/core@14.3.0(vue@3.5.40(typescript@6.0.3)))(@vueuse/integrations@14.3.0(axios@1.18.1)(focus-trap@7.6.5)(vue@3.5.40(typescript@6.0.3)))(focus-trap@7.6.5)(vue@3.5.40(typescript@6.0.3))
       vue-router:
         specifier: ^5.2.0
+<<<<<<< HEAD
         version: 5.2.0(@vue/compiler-sfc@3.5.40)(esbuild@0.28.1)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.40(typescript@6.0.3)))(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4)
+=======
+        version: 5.2.0(@vue/compiler-sfc@3.5.40)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.40(typescript@6.0.3)))(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4)
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
       vue-word-highlighter:
         specifier: ^1.2.6
         version: 1.2.6(vue@3.5.40(typescript@6.0.3))
@@ -260,7 +264,11 @@ importers:
         version: 21.0.0(@vueuse/core@14.3.0(vue@3.5.40(typescript@6.0.3)))
       unplugin-vue-components:
         specifier: ^32.1.0
+<<<<<<< HEAD
         version: 32.1.0(esbuild@0.28.1)(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4)
+=======
+        version: 32.1.0(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4)
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
       vue-eslint-parser:
         specifier: ^10.4.1
         version: 10.4.1(eslint@10.7.0(jiti@2.7.0))
@@ -8537,7 +8545,11 @@ snapshots:
       pathe: 2.0.3
       picomatch: 4.0.5
 
+<<<<<<< HEAD
   unplugin-vue-components@32.1.0(esbuild@0.28.1)(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4):
+=======
+  unplugin-vue-components@32.1.0(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4):
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
     dependencies:
       chokidar: 5.0.0
       local-pkg: 1.2.1
@@ -8687,7 +8699,11 @@ snapshots:
       '@vue/compiler-sfc': 3.5.40
       vue: 3.5.40(typescript@6.0.3)
 
+<<<<<<< HEAD
   vue-router@5.2.0(@vue/compiler-sfc@3.5.40)(esbuild@0.28.1)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.40(typescript@6.0.3)))(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4):
+=======
+  vue-router@5.2.0(@vue/compiler-sfc@3.5.40)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.40(typescript@6.0.3)))(vue@3.5.40(typescript@6.0.3))(webpack@5.108.4):
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
     dependencies:
       '@babel/generator': 8.0.0
       '@vue-macros/common': 3.1.3(vue@3.5.40(typescript@6.0.3))
