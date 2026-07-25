@@ -27,7 +27,7 @@
     "autoprefixer": "^10.5.4",
     "chokidar": "^5.0.0",
     "css-loader": "^7.1.4",
-    "eslint": "^10.7.0",
+    "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-better-tailwindcss": "^4.7.0",
@@ -44,7 +44,11 @@
     "html-webpack-plugin": "^5.6.7",
     "javascript-obfuscator": "^5.5.0",
     "mini-css-extract-plugin": "^2.10.2",
+<<<<<<< HEAD
     "postcss": "^8.5.22",
+=======
+    "postcss": "^8.5.23",
+>>>>>>> ff2bba6705f6e8d4882c9919916e7111f4f71dea
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
     "postcss-loader": "^8.2.1",
@@ -53,7 +57,11 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-loader": "^6.0.0",
+<<<<<<< HEAD
     "sass": "^1.101.7",
+=======
+    "sass": "^1.102.0",
+>>>>>>> ff2bba6705f6e8d4882c9919916e7111f4f71dea
     "sass-loader": "^17.0.0",
     "socket.io": "^4.8.3",
     "style-loader": "^4.0.0",
