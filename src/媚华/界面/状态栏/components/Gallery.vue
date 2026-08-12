@@ -98,11 +98,11 @@ function close() {
 
 function makeFallbackPortrait(name: string, color: string): string {
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="270" viewBox="0 0 200 270">` +
-    `<rect width="200" height="270" fill="${color}" opacity="0.28"/>` +
-    `<circle cx="100" cy="96" r="44" fill="${color}" opacity="0.85"/>` +
-    `<rect x="64" y="130" width="72" height="130" rx="20" fill="${color}" opacity="0.65"/>` +
-    `<text x="100" y="208" font-size="52" font-weight="700" fill="#fff" text-anchor="middle" font-family="serif">${String(name.charAt(0)).replace(/[&<>"']/g, '')}</text>` +
+    `<svg xmlns='http://www.w3.org/2000/svg' width='200' height='270' viewBox='0 0 200 270'>` +
+    `<rect width='200' height='270' fill='${color}' opacity='0.28'/>` +
+    `<circle cx='100' cy='96' r='44' fill='${color}' opacity='0.85'/>` +
+    `<rect x='64' y='130' width='72' height='130' rx='20' fill='${color}' opacity='0.65'/>` +
+    `<text x='100' y='208' font-size='52' font-weight='700' fill='#fff' text-anchor='middle' font-family='serif'>${String(name.charAt(0)).replace(/[&<>\x22\x27]/g, '')}</text>` +
     `</svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }

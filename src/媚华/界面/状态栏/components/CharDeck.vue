@@ -170,21 +170,21 @@ function hexToRgb(hex: string): [number, number, number] {
 
 function makeFallbackPortrait(name: string, color: string): string {
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="270" viewBox="0 0 200 270">` +
-    `<rect width="200" height="270" fill="${color}" opacity="0.28"/>` +
-    `<circle cx="100" cy="96" r="44" fill="${color}" opacity="0.85"/>` +
-    `<rect x="64" y="130" width="72" height="130" rx="20" fill="${color}" opacity="0.65"/>` +
-    `<text x="100" y="208" font-size="52" font-weight="700" fill="#fff" text-anchor="middle" font-family="serif">${escapeXml(name.charAt(0))}</text>` +
+    `<svg xmlns='http://www.w3.org/2000/svg' width='200' height='270' viewBox='0 0 200 270'>` +
+    `<rect width='200' height='270' fill='${color}' opacity='0.28'/>` +
+    `<circle cx='100' cy='96' r='44' fill='${color}' opacity='0.85'/>` +
+    `<rect x='64' y='130' width='72' height='130' rx='20' fill='${color}' opacity='0.65'/>` +
+    `<text x='100' y='208' font-size='52' font-weight='700' fill='#fff' text-anchor='middle' font-family='serif'>${escapeXml(name.charAt(0))}</text>` +
     `</svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
 
 function escapeXml(text: string): string {
-  return String(text || '').replace(/[&<>"']/g, ch => {
+  return String(text || '').replace(/[&<>\x22\x27]/g, ch => {
     if (ch === '&') return '&amp;';
     if (ch === '<') return '&lt;';
     if (ch === '>') return '&gt;';
-    if (ch === '"') return '&quot;';
+    if (ch.charCodeAt(0) === 34) return '&quot;';
     return '&apos;';
   });
 }
