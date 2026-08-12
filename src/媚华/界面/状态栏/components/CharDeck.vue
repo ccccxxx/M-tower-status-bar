@@ -180,13 +180,7 @@ function makeFallbackPortrait(name: string, color: string): string {
 }
 
 function escapeXml(text: string): string {
-  return String(text || '').replace(/[&<>\x22\x27]/g, ch => {
-    if (ch === '&') return '&amp;';
-    if (ch === '<') return '&lt;';
-    if (ch === '>') return '&gt;';
-    if (ch.charCodeAt(0) === 34) return '&quot;';
-    return '&apos;';
-  });
+  return String(text || '').replace(/[&<>\x22\x27]/g, '');
 }
 
 function onImgError(event: Event) {
