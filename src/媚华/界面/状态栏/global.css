@@ -1,0 +1,695 @@
+/* ===== 基础重置 ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  color: var(--txt);
+  background: transparent;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+
+/* ===== 基础主题（夜幕默认）===== */
+:root {
+  --c: #b4a5ff;
+  --c-glow: rgba(180, 165, 255, 0.55);
+  --c-soft: rgba(180, 165, 255, 0.12);
+  --c-surface: rgba(180, 165, 255, 0.06);
+
+  --txt: #f0f2f8;
+  --txt2: #c8cdd8;
+  --txt3: #9ca3b4;
+  --dim: #6b7288;
+
+  --shell-bg: linear-gradient(165deg, rgba(18, 16, 32, 0.72) 0%, rgba(10, 9, 20, 0.78) 50%, rgba(14, 12, 26, 0.74) 100%);
+  --shell-border: rgba(255, 255, 255, 0.07);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(180, 165, 255, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --glass-blur: blur(20px);
+  --glass-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5), 12px 12px 14px rgba(0, 0, 0, 0.4), inset 1px 1px 1.5px rgba(255, 255, 255, 0.1);
+  --glass-edge: inset 1px 1px 1.5px rgba(255, 255, 255, 0.1), inset -1px -1px 1.5px rgba(0, 0, 0, 0.16);
+  --glass-rim: inset 1px 1px 2px rgba(255, 255, 255, 0.16), inset -1px -1px 2px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.035);
+
+  --toolbar-border: rgba(255, 255, 255, 0.08);
+
+  --card-bg: rgba(255, 255, 255, 0.045);
+  --card-bg-hover: rgba(255, 255, 255, 0.07);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --card-border-hover: rgba(255, 255, 255, 0.14);
+  --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 0 1px var(--c-glow), 0 0 40px var(--c-surface);
+
+  --det-shadow: 8px 8px 8px rgba(0, 0, 0, 0.34), 12px 12px 18px rgba(0, 0, 0, 0.22), inset 1px 1px 1.5px rgba(255, 255, 255, 0.12), inset -1px -1px 1.5px rgba(0, 0, 0, 0.16);
+
+  --block-bg: rgba(0, 0, 0, 0.45);
+  --block-border: rgba(255, 255, 255, 0.04);
+  --block-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.65), 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  --panel-bg: rgba(255, 255, 255, 0.04);
+  --panel-border: rgba(255, 255, 255, 0.07);
+
+  --tile-bg: rgba(0, 0, 0, 0.42);
+  --tile-border: rgba(255, 255, 255, 0.06);
+
+  --btn-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 45%, rgba(0, 0, 0, 0.16) 100%);
+  --btn-border: rgba(255, 255, 255, 0.12);
+  --btn-text: var(--c);
+  --btn-on-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.07) 50%, rgba(0, 0, 0, 0.08) 100%);
+  --btn-on-border: rgba(255, 255, 255, 0.26);
+
+  --dropdown-bg: rgba(16, 15, 26, 0.90);
+  --dropdown-border: rgba(255, 255, 255, 0.10);
+  --dropdown-hover: rgba(255, 255, 255, 0.08);
+  --dropdown-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  --modal-bg: linear-gradient(165deg, rgba(18, 16, 32, 0.90), rgba(12, 10, 22, 0.93));
+  --modal-border: rgba(255, 255, 255, 0.10);
+  --overlay-bg: rgba(0, 0, 0, 0.84);
+
+  --empty-bg: rgba(255, 255, 255, 0.03);
+  --empty-border: rgba(255, 255, 255, 0.05);
+  --empty-text: #788098;
+
+  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+}
+
+/* ===== 主题：白天 ===== */
+:root[data-theme='day'] {
+  --c: #d98268;
+  --c-glow: rgba(217, 130, 104, 0.22);
+  --c-soft: rgba(217, 130, 104, 0.13);
+  --c-surface: rgba(217, 130, 104, 0.07);
+  --txt: #2f3742;
+  --txt2: #526070;
+  --txt3: #7b8796;
+  --dim: #9aa3af;
+  --shell-bg: linear-gradient(165deg, rgba(255, 251, 244, 0.86) 0%, rgba(248, 239, 229, 0.88) 48%, rgba(255, 246, 239, 0.84) 100%);
+  --shell-border: rgba(181, 144, 117, 0.16);
+  --shell-shadow: 8px 8px 18px rgba(151, 118, 88, 0.12), 14px 16px 30px rgba(151, 118, 88, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.62), inset 1px 1px 1.5px rgba(255, 255, 255, 0.92), inset -1px -1px 1.5px rgba(158, 121, 91, 0.08);
+  --glass-shadow: 8px 8px 16px rgba(151, 118, 88, 0.12), 12px 14px 28px rgba(151, 118, 88, 0.08), inset 1px 1px 1.5px rgba(255, 255, 255, 0.68);
+  --glass-edge: inset 1px 1px 1.5px rgba(255, 255, 255, 0.72), inset -1px -1px 1.5px rgba(158, 121, 91, 0.08);
+  --glass-rim: inset 1px 1px 2px rgba(255, 255, 255, 0.82), inset -1px -1px 2px rgba(158, 121, 91, 0.10), 0 0 0 1px rgba(171, 134, 107, 0.08);
+  --toolbar-border: rgba(171, 134, 107, 0.13);
+  --card-bg: rgba(255, 253, 249, 0.76);
+  --card-bg-hover: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(180, 141, 111, 0.10);
+  --card-border-hover: rgba(180, 141, 111, 0.18);
+  --card-shadow: 0 12px 32px rgba(145, 112, 82, 0.12), inset 1px 1px 0 rgba(255, 255, 255, 0.88);
+  --card-shadow-hover: 0 14px 34px rgba(145, 112, 82, 0.15), 0 0 0 1px rgba(217, 130, 104, 0.13);
+  --block-bg: rgba(238, 229, 218, 0.68);
+  --block-border: rgba(167, 130, 101, 0.10);
+  --block-shadow: inset 3px 3px 9px rgba(142, 111, 86, 0.20), inset -3px -3px 8px rgba(255, 255, 255, 0.68);
+  --panel-bg: rgba(255, 253, 249, 0.66);
+  --panel-border: rgba(171, 134, 107, 0.11);
+  --tile-bg: rgba(241, 232, 220, 0.74);
+  --tile-border: rgba(171, 134, 107, 0.12);
+  --det-shadow: 8px 8px 16px rgba(145, 112, 82, 0.10), 12px 14px 26px rgba(145, 112, 82, 0.07), inset 1px 1px 1.5px rgba(255, 255, 255, 0.74), inset -1px -1px 1.5px rgba(158, 121, 91, 0.08);
+  --btn-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(239, 229, 218, 0.76));
+  --btn-border: rgba(171, 134, 107, 0.16);
+  --btn-on-bg: linear-gradient(145deg, rgba(255, 250, 246, 0.98), rgba(255, 235, 224, 0.82));
+  --btn-on-border: rgba(217, 130, 104, 0.34);
+  --dropdown-bg: rgba(255, 252, 247, 0.95);
+  --dropdown-border: rgba(171, 134, 107, 0.12);
+  --dropdown-hover: rgba(247, 232, 221, 0.72);
+  --dropdown-shadow: 0 16px 34px rgba(145, 112, 82, 0.13);
+  --modal-bg: linear-gradient(165deg, rgba(255, 252, 247, 0.95), rgba(247, 235, 225, 0.95));
+  --modal-border: rgba(171, 134, 107, 0.13);
+  --overlay-bg: rgba(236, 218, 202, 0.74);
+  --empty-bg: rgba(255, 253, 249, 0.58);
+  --empty-border: rgba(171, 134, 107, 0.10);
+  --empty-text: #98a0aa;
+}
+
+/* ===== 主题：白金 ===== */
+:root[data-theme='platinum'] {
+  --c: #94a3b8;
+  --c-glow: rgba(148, 163, 184, 0.4);
+  --c-soft: rgba(148, 163, 184, 0.08);
+  --c-surface: rgba(148, 163, 184, 0.04);
+  --txt: #e8ecf2;
+  --txt2: #bcc3cf;
+  --txt3: #8b94a4;
+  --dim: #6e7888;
+  --shell-bg: linear-gradient(165deg, rgba(37, 42, 51, 0.72) 0%, rgba(26, 29, 36, 0.78) 50%, rgba(31, 34, 42, 0.74) 100%);
+  --shell-border: rgba(255, 255, 255, 0.06);
+  --shell-shadow: 0 20px 56px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(148, 163, 184, 0.05);
+  --toolbar-border: rgba(255, 255, 255, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-bg-hover: rgba(255, 255, 255, 0.065);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --card-border-hover: rgba(255, 255, 255, 0.11);
+  --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.32);
+  --card-shadow-hover: 0 10px 32px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(148, 163, 184, 0.1);
+  --block-bg: rgba(0, 0, 0, 0.38);
+  --block-border: rgba(255, 255, 255, 0.03);
+  --panel-bg: rgba(255, 255, 255, 0.03);
+  --panel-border: rgba(255, 255, 255, 0.05);
+  --tile-bg: rgba(0, 0, 0, 0.35);
+  --tile-border: rgba(255, 255, 255, 0.05);
+  --btn-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 45%, rgba(0, 0, 0, 0.14) 100%);
+  --btn-border: rgba(255, 255, 255, 0.10);
+  --dropdown-bg: rgba(22, 24, 30, 0.90);
+  --dropdown-border: rgba(255, 255, 255, 0.08);
+  --dropdown-hover: rgba(255, 255, 255, 0.06);
+  --modal-bg: linear-gradient(165deg, rgba(37, 42, 51, 0.90), rgba(26, 29, 36, 0.93));
+  --modal-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== 主题：月光 ===== */
+:root[data-theme='moonlight'] {
+  --c: #a0b8e0;
+  --c-glow: rgba(160, 184, 224, 0.42);
+  --c-soft: rgba(160, 184, 224, 0.07);
+  --c-surface: rgba(160, 184, 224, 0.03);
+  --txt: #e8ecf8;
+  --txt2: #c0c8e0;
+  --txt3: #9098b8;
+  --dim: #687090;
+  --shell-bg: linear-gradient(165deg, rgba(26, 30, 40, 0.72) 0%, rgba(14, 16, 24, 0.78) 50%, rgba(20, 24, 30, 0.74) 100%);
+  --shell-border: rgba(160, 184, 224, 0.08);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(160, 184, 224, 0.06), inset 0 1px 0 rgba(160, 184, 224, 0.03), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  --toolbar-border: rgba(160, 184, 224, 0.08);
+  --card-bg: rgba(24, 28, 38, 0.5);
+  --card-bg-hover: rgba(28, 32, 44, 0.62);
+  --card-border: rgba(160, 184, 224, 0.07);
+  --card-border-hover: rgba(160, 184, 224, 0.15);
+  --card-shadow: 0 6px 22px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(160, 184, 224, 0.03);
+  --card-shadow-hover: 0 12px 34px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(160, 184, 224, 0.14);
+  --block-bg: rgba(0, 0, 0, 0.44);
+  --block-border: rgba(160, 184, 224, 0.05);
+  --block-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.65);
+  --panel-bg: rgba(14, 16, 24, 0.5);
+  --panel-border: rgba(160, 184, 224, 0.07);
+  --tile-bg: rgba(8, 10, 16, 0.58);
+  --tile-border: rgba(160, 184, 224, 0.06);
+  --btn-bg: linear-gradient(180deg, rgba(30, 34, 48, 0.9) 0%, rgba(12, 14, 20, 0.7) 100%);
+  --btn-border: rgba(160, 184, 224, 0.16);
+  --btn-on-border: rgba(160, 184, 224, 0.3);
+  --dropdown-bg: rgba(16, 18, 26, 0.90);
+  --dropdown-border: rgba(160, 184, 224, 0.09);
+  --dropdown-hover: rgba(28, 32, 44, 0.5);
+  --modal-bg: linear-gradient(165deg, rgba(26, 30, 40, 0.90), rgba(14, 16, 24, 0.93));
+  --modal-border: rgba(160, 184, 224, 0.10);
+  --overlay-bg: rgba(0, 0, 0, 0.84);
+  --empty-bg: rgba(14, 16, 24, 0.45);
+  --empty-border: rgba(160, 184, 224, 0.07);
+  --empty-text: #607090;
+}
+
+/* ===== 主题：冰雪 / 星夜 / 薰衣草 / 烟灰 / 青蓝 ===== */
+:root[data-theme='ice'] {
+  --c: #8ec8f0; --c-glow: rgba(142, 200, 240, 0.45); --c-soft: rgba(142, 200, 240, 0.08); --c-surface: rgba(142, 200, 240, 0.04);
+  --shell-bg: linear-gradient(165deg, rgba(8, 20, 32, 0.72) 0%, rgba(4, 12, 22, 0.78) 50%, rgba(6, 16, 28, 0.74) 100%);
+  --shell-border: rgba(142, 200, 240, 0.08);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(142, 200, 240, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(142, 200, 240, 0.12), 0 0 40px rgba(142, 200, 240, 0.06);
+  --dropdown-bg: rgba(8, 20, 32, 0.90); --modal-bg: linear-gradient(165deg, rgba(8, 20, 32, 0.90), rgba(4, 12, 22, 0.93));
+}
+:root[data-theme='starry'] {
+  --c: #9098d8; --c-glow: rgba(144, 152, 216, 0.46); --c-soft: rgba(144, 152, 216, 0.09); --c-surface: rgba(144, 152, 216, 0.04);
+  --shell-bg: linear-gradient(165deg, rgba(16, 18, 36, 0.72) 0%, rgba(10, 12, 26, 0.78) 50%, rgba(14, 16, 30, 0.74) 100%);
+  --shell-border: rgba(144, 152, 216, 0.08);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(144, 152, 216, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(144, 152, 216, 0.12), 0 0 40px rgba(144, 152, 216, 0.06);
+  --dropdown-bg: rgba(16, 18, 36, 0.90); --modal-bg: linear-gradient(165deg, rgba(16, 18, 36, 0.90), rgba(10, 12, 26, 0.93));
+}
+:root[data-theme='lavender'] {
+  --c: #c8b0e0; --c-glow: rgba(200, 176, 224, 0.46); --c-soft: rgba(200, 176, 224, 0.10); --c-surface: rgba(200, 176, 224, 0.05);
+  --shell-bg: linear-gradient(165deg, rgba(24, 18, 32, 0.72) 0%, rgba(16, 12, 22, 0.78) 50%, rgba(20, 16, 28, 0.74) 100%);
+  --shell-border: rgba(200, 176, 224, 0.08);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(200, 176, 224, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(200, 176, 224, 0.12), 0 0 40px rgba(200, 176, 224, 0.06);
+  --dropdown-bg: rgba(24, 18, 32, 0.90); --modal-bg: linear-gradient(165deg, rgba(24, 18, 32, 0.90), rgba(16, 12, 22, 0.93));
+}
+:root[data-theme='smoke'] {
+  --c: #b8a898; --c-glow: rgba(184, 168, 152, 0.42); --c-soft: rgba(184, 168, 152, 0.08); --c-surface: rgba(184, 168, 152, 0.04);
+  --shell-bg: linear-gradient(165deg, rgba(30, 28, 26, 0.72) 0%, rgba(22, 20, 18, 0.78) 50%, rgba(28, 26, 24, 0.74) 100%);
+  --shell-border: rgba(184, 168, 152, 0.07);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.52), 0 0 0 1px rgba(184, 168, 152, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(184, 168, 152, 0.10), 0 0 40px rgba(184, 168, 152, 0.05);
+  --dropdown-bg: rgba(30, 28, 26, 0.90); --modal-bg: linear-gradient(165deg, rgba(30, 28, 26, 0.90), rgba(22, 20, 18, 0.93));
+}
+:root[data-theme='cyan'] {
+  --c: #58c8d8; --c-glow: rgba(88, 200, 216, 0.48); --c-soft: rgba(88, 200, 216, 0.10); --c-surface: rgba(88, 200, 216, 0.05);
+  --shell-bg: linear-gradient(165deg, rgba(8, 22, 26, 0.72) 0%, rgba(4, 14, 18, 0.78) 50%, rgba(6, 18, 22, 0.74) 100%);
+  --shell-border: rgba(88, 200, 216, 0.08);
+  --shell-shadow: 0 24px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(88, 200, 216, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(88, 200, 216, 0.12), 0 0 40px rgba(88, 200, 216, 0.06);
+  --dropdown-bg: rgba(8, 22, 26, 0.90); --modal-bg: linear-gradient(165deg, rgba(8, 22, 26, 0.90), rgba(4, 14, 18, 0.93));
+}
+
+/* ===== 白天主题组件微调 ===== */
+:root[data-theme='day'] .tit,
+:root[data-theme='day'] .nm-d,
+:root[data-theme='day'] .bx,
+:root[data-theme='day'] .pv-n {
+  text-shadow: none;
+}
+:root[data-theme='day'] .tit,
+:root[data-theme='day'] .tit .heart,
+:root[data-theme='day'] .nm-d {
+  color: #bf6e59;
+}
+:root[data-theme='day'] .det-r::before {
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.78), inset -1px -1px 2px rgba(158, 121, 91, 0.08), 0 0 0 1px rgba(171, 134, 107, 0.08);
+}
+
+/* ===== 外壳 ===== */
+.w {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: var(--shell-bg);
+  background-clip: padding-box;
+  border: 1px solid var(--shell-border);
+  box-shadow: var(--shell-shadow);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  padding: 0 0 14px;
+  overflow: hidden;
+}
+
+/* ===== 工具栏 ===== */
+.tb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px 6px;
+  border-bottom: 1px solid var(--toolbar-border);
+  position: relative;
+  z-index: 2;
+}
+.tb-l {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.tg {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  background: var(--btn-bg);
+  background-clip: padding-box;
+  border: 1px solid var(--btn-border);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all var(--transition-fast);
+}
+.tg:hover {
+  background: var(--btn-on-bg);
+  border-color: var(--btn-on-border);
+}
+.tg.on {
+  background: var(--btn-on-bg);
+  border-color: var(--btn-on-border);
+  color: var(--txt);
+}
+
+.tit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  font: 600 0.85rem 'Noto Serif SC', 'Microsoft YaHei', serif;
+  color: var(--c);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.tit .heart {
+  color: var(--c);
+}
+
+.ind {
+  min-width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.58rem;
+  color: var(--txt2);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--block-bg);
+  border: 1px solid var(--block-border);
+  box-shadow: var(--block-shadow);
+  flex-shrink: 0;
+}
+
+/* ===== 卡牌区 ===== */
+.deck-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 10px 12px 0;
+}
+.all-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.det-r {
+  display: flex;
+  gap: 12px;
+  min-height: 150px;
+  padding: 14px;
+  border-radius: var(--radius-xl);
+  background: var(--card-bg);
+  background-clip: padding-box;
+  border: none;
+  box-shadow: var(--det-shadow);
+  position: relative;
+  overflow: hidden;
+}
+.det-r::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: var(--glass-rim);
+}
+.det-r::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 2px;
+  width: 5px;
+  height: calc(100% - 16px);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(0, 0, 0, 0.16) 100%),
+    linear-gradient(180deg, var(--card-accent, var(--c)) 0%, var(--card-accent, var(--c)) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 8px var(--card-accent, var(--c)), 0 0 22px var(--c-glow);
+  opacity: 0.92;
+  z-index: 1;
+}
+
+.av-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+.av-flip-wrap {
+  perspective: 600px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.55));
+  position: relative;
+}
+.av-flip {
+  position: relative;
+  width: calc(100px * var(--img-scale, 1));
+  height: calc(135px * var(--img-scale, 1));
+  transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform-style: preserve-3d;
+}
+.av-flip-front {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--glass-rim);
+  display: grid;
+  place-items: center;
+  background: var(--block-bg);
+}
+.av-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.av-img.loaded {
+  opacity: 1;
+}
+.av-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font: 700 2rem 'Noto Serif SC', 'Microsoft YaHei', serif;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  background:
+    radial-gradient(120% 90% at 20% 0%, color-mix(in srgb, var(--card-accent, var(--c)) 36%, transparent) 0%, transparent 60%),
+    var(--block-bg);
+}
+
+.inf {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1;
+}
+
+.nm-d {
+  font: 700 1.2rem 'Noto Serif SC', 'Microsoft YaHei', serif;
+  color: var(--card-accent, var(--c));
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nm-d .rel-stage {
+  font: 500 0.62rem 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--txt3);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  padding: 2px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+.like-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 1px 0;
+}
+.like-track {
+  flex: 1;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--block-bg);
+  border: 1px solid var(--block-border);
+  overflow: hidden;
+}
+.like-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--card-accent, var(--c)) 55%, #fff) 0%, var(--card-accent, var(--c)) 100%);
+  box-shadow: 0 0 8px var(--card-glow, transparent);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.like-val {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--card-accent, var(--c));
+  min-width: 34px;
+  text-align: right;
+}
+
+.flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.flag-chip {
+  font-size: 0.6rem;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-soft);
+  color: var(--c);
+  letter-spacing: 0.03em;
+}
+
+.blk {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--block-bg);
+  background-clip: padding-box;
+  border: none;
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.44), inset -2px -2px 7px rgba(255, 255, 255, 0.07), 0 1px 0 rgba(255, 255, 255, 0.025);
+  position: relative;
+  overflow: hidden;
+}
+.bt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: var(--dim);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.bt i {
+  color: var(--tc, var(--c));
+  font-size: 0.66rem;
+}
+.bx {
+  font-size: calc(0.85rem * var(--text-scale, 1));
+  color: var(--txt);
+  font-weight: 450;
+  line-height: 1.55;
+  white-space: normal;
+  word-break: break-word;
+  max-height: 160px;
+  overflow-y: auto;
+  padding-right: 3px;
+}
+
+.empty-state,
+.manage-empty {
+  padding: 28px 18px;
+  border-radius: var(--radius-lg);
+  background: var(--empty-bg);
+  border: 1px solid var(--empty-border);
+  box-shadow: var(--glass-edge), 3px 3px 8px rgba(0, 0, 0, 0.18);
+  color: var(--empty-text);
+  text-align: center;
+  line-height: 2;
+  font-size: 0.85rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== 页码指示 ===== */
+.page-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0 2px;
+}
+.pg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--tile-bg);
+  border: 1px solid var(--tile-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+.pg-dot:hover {
+  background: var(--card-bg-hover);
+}
+.pg-dot.on {
+  background: var(--c);
+  border-color: var(--c);
+  box-shadow: 0 0 8px var(--c-glow);
+}
+
+/* ===== 弹层 / 模态 ===== */
+.pv {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--overlay-bg);
+  z-index: 99;
+  padding: 0;
+  animation: fadeIn 0.2s ease-out;
+}
+.pv-b {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  width: min(560px, 92vw);
+  max-height: 88vh;
+  border-radius: var(--radius-2xl);
+  background: var(--modal-bg);
+  border: 1px solid var(--modal-border);
+  box-shadow: var(--glass-shadow);
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pv-n {
+  text-align: center;
+  color: var(--txt);
+  padding: 12px;
+  font: 600 0.92rem 'Noto Serif SC', 'Microsoft YaHei', serif;
+  letter-spacing: 3px;
+  border-bottom: 1px solid var(--toolbar-border);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.pv-i-c {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.25);
+}
+.pv-img {
+  max-width: 100%;
+  max-height: calc(88vh - 60px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim {
+  animation: cardSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim { animation: none; }
+}
+:root.motion-reduce .anim { animation: none; }

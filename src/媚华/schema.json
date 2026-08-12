@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "日期": {
+          "default": "",
+          "type": "string"
+        },
+        "星期": {
+          "default": "",
+          "type": "string"
+        },
+        "时间": {
+          "default": "",
+          "type": "string"
+        },
+        "地点": {
+          "default": "",
+          "type": "string"
+        },
+        "天气": {
+          "default": "晴",
+          "type": "string"
+        }
+      }
+    },
+    "角色": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "在场": {
+            "default": true,
+            "type": "boolean"
+          },
+          "好感": {
+            "default": 0,
+            "type": "number"
+          },
+          "关系阶段": {
+            "default": "陌生人",
+            "type": "string"
+          },
+          "衣着": {
+            "default": "",
+            "type": "string"
+          },
+          "外貌": {
+            "default": "",
+            "type": "string"
+          },
+          "事件": {
+            "default": {},
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "$flag": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    }
+  }
+}

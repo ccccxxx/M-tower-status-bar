@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const Schema = z.object({
+const MoleSchua = z.object({
   系统: z.object({
     当前楼层: z.string().default('第1层'),
     楼层编号: z.coerce.number().default(1),
@@ -99,8 +99,31 @@ const Schema = z.object({
   }),
 });
 
-const json = JSON.stringify(z.toJSONSchema(Schema, { io: 'input', reused: 'ref' }), null, 2);
+const MeihuaSchema = z.object({
+  世界: z.object({
+    日期: z.string().prefault(''),
+    星期: z.string().prefault(''),
+    时间: z.string().prefault(''),
+    地点: z.string().prefault(''),
+    天气: z.string().prefault('晴'),
+  }).prefault({}),
+  角色: z.record(z.string(), z.object({
+    在场: z.boolean().prefault(true),
+    好感: z.coerce.number().transform(value => Math.max(0, Math.min(100, value))).prefault(0),
+    关系阶段: z.string().prefault('陌生人'),
+    衣着: z.string().prefault(''),
+    外貌: z.string().prefault(''),
+    事件: z.record(z.string(), z.boolean()).prefault({}),
+  })).prefault({}),
+  $flag: z.record(z.string(), z.boolean()).prefault({}),
+});
 
-const targetDir = path.join(__dirname, 'src', 'M不复还');
-fs.writeFileSync(path.join(targetDir, 'schema.json'), json, 'utf-8');
-console.log('schema.json 已更新:', path.join(targetDir, 'schema.json'));
+function dumpSchema(schema, dir) {
+  const json = JSON.stringify(z.toJSONSchema(schema, { io: 'input', reused: 'ref' }), null, 2);
+  const targetDir = path.join(__dirname, 'src', dir);
+  fs.writeFileSync(path.join(targetDir, 'schema.json'), json, 'utf-8');
+  console.log('schema.json 已更新:', path.join(targetDir, 'schema.json'));
+}
+
+dumpSchema(MoleSchua, 'M不复还');
+dumpSchema(MeihuaSchema, '媚华');
