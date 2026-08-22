@@ -27,7 +27,11 @@
     "autoprefixer": "^10.5.4",
     "chokidar": "^5.0.0",
     "css-loader": "^7.1.4",
+<<<<<<< HEAD
     "eslint": "^10.8.1",
+=======
+    "eslint": "^10.9.0",
+>>>>>>> c27dc311feeca88f575184c70cd539091ffeaf47
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-better-tailwindcss": "^4.7.0",
@@ -42,7 +46,11 @@
     "html-loader": "^5.1.0",
     "html-webpack-inline-svg-plugin": "^2.3.0",
     "html-webpack-plugin": "^5.6.8",
+<<<<<<< HEAD
     "javascript-obfuscator": "^5.5.0",
+=======
+    "javascript-obfuscator": "^5.5.1",
+>>>>>>> c27dc311feeca88f575184c70cd539091ffeaf47
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.26",
     "postcss-cli": "^11.0.1",
