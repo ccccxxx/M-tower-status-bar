@@ -19,7 +19,11 @@
     "@types/jqueryui": "^1.12.24",
     "@types/lodash": "^4.17.25",
     "@types/react": "^19.2.18",
+<<<<<<< HEAD
     "@types/react-dom": "^19.2.5",
+=======
+    "@types/react-dom": "^19.2.7",
+>>>>>>> 9c69ceb712d475b9a9bd31fc9b787240061a05a5
     "@types/showdown": "^2.0.6",
     "@types/toastr": "^2.1.44",
     "@types/webpack": "^5.28.5",
@@ -44,7 +48,11 @@
     "html-webpack-plugin": "^5.6.8",
     "javascript-obfuscator": "^5.6.0",
     "mini-css-extract-plugin": "^2.10.2",
+<<<<<<< HEAD
     "postcss": "^8.5.26",
+=======
+    "postcss": "^8.5.28",
+>>>>>>> 9c69ceb712d475b9a9bd31fc9b787240061a05a5
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
     "postcss-loader": "^8.2.1",
@@ -53,7 +61,11 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-loader": "^6.0.0",
+<<<<<<< HEAD
     "sass": "^1.103.1",
+=======
+    "sass": "^1.104.0",
+>>>>>>> 9c69ceb712d475b9a9bd31fc9b787240061a05a5
     "sass-loader": "^17.0.1",
     "socket.io": "^4.8.3",
     "style-loader": "^4.0.0",
@@ -63,7 +75,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.13",
+=======
+>>>>>>> 9c69ceb712d475b9a9bd31fc9b787240061a05a5
     "type-fest": "^5.9.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.69.0",
