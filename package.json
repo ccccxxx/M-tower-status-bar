@@ -33,7 +33,11 @@
     "eslint-plugin-better-tailwindcss": "^4.7.0",
     "eslint-plugin-import-x": "^4.17.1",
     "eslint-plugin-pinia": "^0.4.2",
+<<<<<<< HEAD
     "eslint-plugin-vue": "^10.10.0",
+=======
+    "eslint-plugin-vue": "^10.11.0",
+>>>>>>> c3dda85b40baa6188b2eff4e263cb20fedabcecf
     "eslint-webpack-plugin": "^6.0.0",
     "globals": "^17.12.0",
     "html-inline-css-loader": "^0.2.1",
@@ -63,7 +67,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.13",
+=======
+>>>>>>> c3dda85b40baa6188b2eff4e263cb20fedabcecf
     "type-fest": "^5.9.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.69.0",
