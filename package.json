@@ -24,7 +24,11 @@
     "@types/toastr": "^2.1.44",
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/parser": "^8.70.0",
+<<<<<<< HEAD
     "autoprefixer": "^10.6.0",
+=======
+    "autoprefixer": "^10.6.1",
+>>>>>>> d77edb7121650f80c9a1a62357d549925d1336ad
     "chokidar": "^5.0.0",
     "css-loader": "^7.1.5",
     "eslint": "^10.10.0",
@@ -63,7 +67,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.13",
+=======
+>>>>>>> d77edb7121650f80c9a1a62357d549925d1336ad
     "type-fest": "^5.9.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.70.0",
