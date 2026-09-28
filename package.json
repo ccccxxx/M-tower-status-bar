@@ -63,7 +63,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.15",
+=======
+>>>>>>> 7f92d0b6cabecacd6ca52f5c77d6f18fa6a3b4b9
     "type-fest": "^5.10.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.70.1",
