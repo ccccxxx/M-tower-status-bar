@@ -17,7 +17,11 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/jquery": "^4.0.1",
     "@types/jqueryui": "^1.12.24",
+<<<<<<< HEAD
     "@types/lodash": "^4.17.25",
+=======
+    "@types/lodash": "^4.17.26",
+>>>>>>> 6bdf7c9c487192089e80293da029e2345f543a90
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/showdown": "^2.0.6",
@@ -63,7 +67,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.15",
+=======
+>>>>>>> 6bdf7c9c487192089e80293da029e2345f543a90
     "type-fest": "^5.10.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.71.1",
