@@ -44,7 +44,11 @@
     "html-webpack-plugin": "^5.6.8",
     "javascript-obfuscator": "^5.9.0",
     "mini-css-extract-plugin": "^2.10.2",
+<<<<<<< HEAD
     "postcss": "^8.5.30",
+=======
+    "postcss": "^8.5.31",
+>>>>>>> a5317b873d6a11e0ca2f71d53e45bc23e81faf2a
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
     "postcss-loader": "^8.2.1",
@@ -63,7 +67,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.15",
+=======
+>>>>>>> a5317b873d6a11e0ca2f71d53e45bc23e81faf2a
     "type-fest": "^5.10.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.71.2",
