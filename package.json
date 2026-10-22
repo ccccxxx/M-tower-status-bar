@@ -17,7 +17,11 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/jquery": "^4.0.1",
     "@types/jqueryui": "^1.12.24",
+<<<<<<< HEAD
     "@types/lodash": "^4.17.26",
+=======
+    "@types/lodash": "^4.17.27",
+>>>>>>> 9aadd35b2a8c888b756179046743cbf920a1a0c8
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/showdown": "^2.0.6",
@@ -53,7 +57,11 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "remark-loader": "^6.0.0",
+<<<<<<< HEAD
     "sass": "^1.106.0",
+=======
+    "sass": "^1.106.1",
+>>>>>>> 9aadd35b2a8c888b756179046743cbf920a1a0c8
     "sass-loader": "^17.0.1",
     "socket.io": "^4.8.4",
     "style-loader": "^4.0.0",
@@ -63,7 +71,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.8.1",
+<<<<<<< HEAD
     "tsx": "^4.23.15",
+=======
+>>>>>>> 9aadd35b2a8c888b756179046743cbf920a1a0c8
     "type-fest": "^5.10.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.72.0",
