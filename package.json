@@ -47,7 +47,7 @@
     "postcss": "^8.5.33",
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
-    "postcss-loader": "^8.2.1",
+    "postcss-loader": "^8.2.2",
     "postcss-minify": "^1.2.0",
     "prettier": "^3.10.1",
     "remark": "^15.0.1",
@@ -63,7 +63,10 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tslib": "^2.9.1",
+<<<<<<< HEAD
     "tsx": "^4.23.15",
+=======
+>>>>>>> 884ced41021768bed2bf7e03c14e0da9ce08e010
     "type-fest": "^5.10.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.73.0",
